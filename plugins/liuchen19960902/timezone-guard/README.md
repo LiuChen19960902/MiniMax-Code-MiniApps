@@ -5,12 +5,12 @@
 One clock, one verdict: is it a reasonable time to message someone in another time zone? The verdict
 follows the **other** city's local time, because what matters is whether *they* are awake.
 
-Author: [FineCat](https://github.com/LiuChen19960902) · Version: `1.0.0`
+Author: [FineCat](https://github.com/LiuChen19960902) · Version: `1.0.1`
 
 ![A/时差保安 showing the verdict, with the target city clock above the local one](docs/preview.png)
 
 *The page itself is in Chinese. This screenshot is the light theme, taken while Los Angeles was at
-19:49 (the evening band); the dark theme is below.*
+20:23 (the evening band); the dark theme is below.*
 
 ![A/时差保安 in the dark theme](docs/preview-dark.png)
 
