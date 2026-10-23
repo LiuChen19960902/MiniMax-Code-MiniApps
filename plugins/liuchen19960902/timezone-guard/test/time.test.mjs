@@ -61,10 +61,21 @@ test('formatDiff: 整小时走「约 N 小时」，非整小时给出精确值',
   assert.equal(formatDiff(-900), '约 15 小时');
   assert.equal(formatDiff(0), '约 0 小时');
   assert.equal(formatDiff(60), '约 1 小时');
-  assert.equal(formatDiff(345), ' 5 小时 45 分钟');
-  assert.equal(formatDiff(-345), ' 5 小时 45 分钟');
-  assert.equal(formatDiff(45), ' 45 分钟');
-  assert.equal(formatDiff(-45), ' 45 分钟');
+  assert.equal(formatDiff(345), '5 小时 45 分钟');
+  assert.equal(formatDiff(-345), '5 小时 45 分钟');
+  assert.equal(formatDiff(45), '45 分钟');
+  assert.equal(formatDiff(-45), '45 分钟');
+});
+
+test('formatDiff: 纯文本，不替调用方做排版', () => {
+  // 前导/尾随空格属于拼接现场的事，纯函数不该掺进去，
+  // 否则调用方想按别的方式排版就得先 trim。
+  const inputs = [0, 1, 45, 60, 90, 345, 720, 900, 1035, -1, -45, -345, -900];
+  for (const diff of inputs) {
+    const text = formatDiff(diff);
+    assert.equal(text, text.trim(), `formatDiff(${diff}) 不该带首尾空白：${JSON.stringify(text)}`);
+    assert.ok(text.length > 0, `formatDiff(${diff}) 不该为空`);
+  }
 });
 
 test('dayDelta: 只看日历日，不看时刻', () => {

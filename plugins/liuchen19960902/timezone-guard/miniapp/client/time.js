@@ -103,14 +103,16 @@
    * 时差文案。
    * 整小时沿用「约 N 小时」；存在 45 分钟这类非整小时偏移时给出精确的
    * 小时 + 分钟，避免读者拿 5.8 小时去对旁边并排的两个时钟。
+   *
+   * 只回纯文本，不带任何前导或尾随空格：拼到「快 / 慢」后面要不要留一个
+   * 空格是调用方的事（整小时那个「约」自成一词，非整小时直接接数字会连成一团）。
    */
   function formatDiff(diffMinutes) {
     var abs = Math.abs(diffMinutes);
     var hours = Math.floor(abs / 60);
     var minutes = abs % 60;
     if (minutes === 0) return '约 ' + hours + ' 小时';
-    // 非整小时时带一个前导空格，拼到「快/慢」后面才不会连成一团。
-    return hours > 0 ? ' ' + hours + ' 小时 ' + minutes + ' 分钟' : ' ' + minutes + ' 分钟';
+    return hours > 0 ? hours + ' 小时 ' + minutes + ' 分钟' : minutes + ' 分钟';
   }
 
   /** 目标日期相对对照日期的日历天数差。 */
